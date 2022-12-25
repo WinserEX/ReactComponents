@@ -10,12 +10,20 @@ class Contador extends Component{
         super();
         this.state = {contador: 0}
         this.handleClick = this.handleClick.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
 
     handleClick(){
         this.setState(
             ()=>{
                 return { contador: this.state.contador + 1 }
+            });
+    }
+
+    handleReset(){
+        this.setState(
+            ()=>{
+                return { contador: 0 }
             });
     }
     
@@ -25,23 +33,24 @@ class Contador extends Component{
                 <h1>
                     {this.state.contador}
                 </h1>
-                <Boton handleClick={ this.handleClick }/>
+                <Boton name="Add 1" func={ this.handleClick }/>
+                <Boton name="Reset" func={ this.handleReset }/>
             </div>
         );
     }
 }
 
-function Boton({ handleClick }){
+function Boton(props){
     return (
         <Button           
              variant="danger"
-             onClick={ ()=> handleClick() }
-             >Click me!
+             onClick={ props.func }
+             >{ props.name }
         </Button>
     )
 }
 
-function Comp({job, fname, lname}) {
+function Comp(props) {
     const estudiantes = [
         {nombre: "Winser", apellido: "Espinal"},
         {nombre: "Oup", apellido: "Uzeta"},
