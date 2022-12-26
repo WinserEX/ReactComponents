@@ -40,12 +40,12 @@ class Contador extends Component{
     }
 }
 
-function Boton(props){
+function Boton({ name, func }){
     return (
         <Button           
              variant="danger"
-             onClick={ props.func }
-             >{ props.name }
+             onClick={ func }
+             >{ name }
         </Button>
     )
 }
@@ -60,7 +60,7 @@ function Comp(props) {
     
     return (
         <div className='funcComp'>
-            { estudiantes.map(est => <Componente {...est}/> ) }
+            { estudiantes.map(est => <Componente {...est} key={est.name} /> ) }
             
             <Contador />
         </div>
